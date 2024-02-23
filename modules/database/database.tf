@@ -1,18 +1,21 @@
-resource "aws_docdb_cluster" "database" {
-#    cluster_identifier = var.database_name
-#    master_username = "foo"
-#    master_password = "bar"
-#    db_subnet_group_name = aws_db_subnet_group.default.name
-#    vpc_security_group_ids = [aws_security_group.default.id]
-#    skip_final_snapshot = true
-#    backup_retention_period = 5
-#    preferred_backup_window = "07:00-09:00"
-#    preferred_maintenance_window = "wed:03:00-wed:04:00"
-#    storage_encrypted = true
-#    apply_immediately = true
-#    tags = {
-#        Name = "MyDocDB"
-#    }
-}
+resource "aws_dynamodb_table" "database" {
+  hash_key = "company_name"
+  name     = "glassdoor_reviews"
 
-#resource "" "" {}
+  // We need to keep under 25 to stay within the free tier
+  read_capacity  = 25
+  write_capacity = 25
+
+  attribute {
+    name = var.primary_key.name
+    type = var.primary_key.type
+  }
+
+  dynamic "attribute" {
+    for_each = var.columns
+    content {
+      name = attribute.value.name
+      type = attribute.value.type
+    }
+  }
+}
