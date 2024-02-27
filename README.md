@@ -3,26 +3,26 @@
 
 # Pattern on create new branch ❤️
   To create a new branch, follow the pattern above:
-    * Feature:
+  * Feature:
     ```
     feature/projectname-number-of-task-short-description
     ```
-   * Fix:
+  * Fix:
     ```
     fix/projectname-number-of-task-short-description
     ```
-    * Spike:
+  * Spike:
     ```
     spike/projectname-number-of-task-short-description
     ```
-    * Release:
+  * Release:
     ```
     release/release+version
     ```
 
 # Pattern on delete branch ✨
-When PR (Pull Request) be accepted and merged:
-  - Delete branch after merge.
+  When PR (Pull Request) be accepted and merged:
+    - Delete branch after merge.
 
 **Observe:**
   - Delete branch useless.
