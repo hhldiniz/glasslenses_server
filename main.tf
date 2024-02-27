@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "br-sa-east-1"
+  region = "sa-east-1"
 }
 
 module "vpc" {
