@@ -4,6 +4,7 @@ on: [push]
 jobs:
   Build-and-Deploy-Dev:
     runs-on: ubuntu-latest
+    condition: ${{ github.ref == 'refs/heads/develop' }}
     steps:
       - run: echo "Building and testing..."
         name: 'Build and Test'
@@ -15,6 +16,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   Build-and-Deploy-Prod:
     runs-on: ubuntu-latest
+    condition: ${{ github.ref == 'refs/heads/main' }}
     steps:
       - run: echo "Building and testing..."
         name: 'Build and Test'
