@@ -1,49 +1,29 @@
-trigger:
-- 'dev'
-- 'master'
-
-pr:
-- '*'
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-variables:
-  AWS_REGION: 'sa-east-1'
-  AWS_ACCESS_KEY_ID: $(var.aws_access_key)
-  AWS_SECRET_ACCESS_KEY: $(var.aws_access_key)
-
+name: GitHub Actions Demo
+description: This deploys the infrastructure and updates the backend code
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [ push ]
+runs:
+  image: ubuntu-latest
 jobs:
-- job: BuildAndDeploy
-  displayName: 'Build and Deploy'
-  steps:
-
-    - script: echo "Building and testing..."
-      displayName: 'Build and Test code'
-
-    - checkout: self
-
-    - stage: DeployToDev
-      displayName: 'Deploy to Dev'
-      jobs:
-      - deployment: Deploy
-        environment: 'Dev'
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-              - script: echo "Deploying to Dev..."
-                displayName: 'Deploy to Dev'
-
-    - stage: DeployToProd
-      displayName: 'Deploy to Production'
-      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-      jobs:
-      - deployment: Deploy
-        environment: 'Production'
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-              - script: echo "Deploying to Production..."
-                displayName: 'Deploy to Production'
+  Build-and-Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Building and testing..."
+        displayName: 'Build and Test'
+      - run: echo "Deploying to Dev..."
+        displayName: 'Deploy to Dev'
+        env:
+          AWS_REGION: 'sa-east-1'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  Build-and-Deploy-Prod:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Building and testing..."
+        displayName: 'Build and Test'
+      - run: echo "Deploying to Production..."
+        displayName: 'Deploy to Production'
+        env:
+          AWS_REGION: 'sa-east-1'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
