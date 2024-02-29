@@ -1,11 +1,8 @@
 name: GitHub Actions Demo
-description: This deploys the infrastructure and updates the backend code
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [ push ]
-runs:
-  image: ubuntu-latest
+on: [push]
 jobs:
-  Build-and-Deploy:
+  Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Building and testing..."
