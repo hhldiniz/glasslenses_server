@@ -6,9 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Building and testing..."
-        displayName: 'Build and Test'
+        name: 'Build and Test'
       - run: echo "Deploying to Dev..."
-        displayName: 'Deploy to Dev'
+        name: 'Deploy to Dev'
         env:
           AWS_REGION: 'sa-east-1'
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Building and testing..."
-        displayName: 'Build and Test'
+        name: 'Build and Test'
       - run: echo "Deploying to Production..."
-        displayName: 'Deploy to Production'
+        name: 'Deploy to Production'
         env:
           AWS_REGION: 'sa-east-1'
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
