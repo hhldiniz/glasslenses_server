@@ -1,0 +1,10 @@
+.idea/glasslenses_server.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/terraform.xml
+.idea/jsonSchemas.xml
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml
+modules/lambda/browser_request_handler_lambda_function/browser_request_handler.zip
+.terraform.lock.hcl
+terraform.tfstate.backup
