@@ -12,6 +12,12 @@ resource "aws_lambda_function" "browser_request_handler" {
   depends_on = [data.archive_file.lambda_package]
 }
 
+resource "aws_lambda_function_url" "browser_request_handler_url" {
+  function_name      = aws_lambda_function.browser_request_handler.function_name
+  qualifier          = "$LATEST"
+  authorization_type = "AWS_IAM"
+}
+
 data "archive_file" "lambda_package" {
   output_path = "${local.browser_request_lambda_function_location}/${var.lambda_function_name}.zip"
   type        = "zip"
