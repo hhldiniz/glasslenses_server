@@ -14,7 +14,7 @@ resource "aws_lambda_function" "browser_request_handler" {
 
 resource "aws_lambda_function_url" "browser_request_handler_url" {
   function_name      = aws_lambda_function.browser_request_handler.function_name
-  qualifier          = "$LATEST"
+  qualifier          = "LATEST"
   authorization_type = "AWS_IAM"
 }
 
